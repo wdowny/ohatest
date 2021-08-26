@@ -1,9 +1,25 @@
---
-version: '2.4'
+---
+version: '3'
 
 services:
 
   backend:
     image: postgres:10.6
     command: -c fsync=off -c full_page_writes=off
- ### --> Please continue your code here to declare database and frontend service
+### --> Please continue your code here to declare database and frontend service
+    environment:
+      - POSTGRES_DB=demo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  frontend:
+    build: .
+    ports:
+      - 8000:8000
+    depends_on:
+      - backend
+    environment:
+      - DB_HOST=backend
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=demo
