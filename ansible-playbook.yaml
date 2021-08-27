@@ -30,29 +30,14 @@
       state: started
       enabled: yes
 
-  - name: upgrade pip
+  - name: upgrade pip and add necessary libs
     pip:
-      name: pip
+      name: pip,docker,docker-compose,jsondiff
       state: latest
 
-  - name: pip docker module
-    pip:
-      name: docker
-      state: latest
-    
   - name: setup Docker Swarm
     docker_swarm:
       state: present
-
-  - name: install docker-compose
-    pip:
-      name: docker-compose
-      state: latest
-  
-  - name: install jsondiff
-    pip:
-      name: jsondiff
-      state: latest
 
   - name: store docker secret
     docker_secret:
