@@ -1,5 +1,5 @@
 ---
-version: '3'
+version: '3.9'
 
 services:
 
@@ -11,12 +11,11 @@ services:
       POSTGRES_DB: demo
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: /run/secrets/pg_pass
-#    secrets:
-#      - pg_pass
+    secrets:
+      - pg_pass
         
   frontend:
-#    image: wdowny/ohatest:latest
-    build: .
+    image: wdowny/ohatest:latest
     ports:
       - 8000:8000
     depends_on:
@@ -26,10 +25,10 @@ services:
       DB_USER: postgres
       DB_PASSWORD: /run/secrets/pg_pass
       DB_NAME: demo
-#    secrets:
-#      - pg_pass
+    secrets:
+      - pg_pass
 
-#secrets:
-#  pg_pass:
-#    external: true
+secrets:
+  pg_pass:
+    external: true
         
