@@ -31,4 +31,3 @@ services:
 secrets:
   pg_pass:
     external: true
-        

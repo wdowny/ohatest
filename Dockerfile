@@ -1,5 +1,4 @@
 FROM python:3.6
-# Latest Python:3 doesn't meet requirements for psycopg2==2.7.6.1 - incompatible
 RUN mkdir /code
 WORKDIR /code
 COPY . /code/
