@@ -8,18 +8,28 @@ services:
     command: -c fsync=off -c full_page_writes=off
 ### --> Please continue your code here to declare database and frontend service
     environment:
-      - POSTGRES_DB=demo
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-
+      POSTGRES_DB: demo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: /run/secrets/pg_pass
+#    secrets:
+#      - pg_pass
+        
   frontend:
+#    image: wdowny/ohatest:latest
     build: .
     ports:
       - 8000:8000
     depends_on:
       - backend
     environment:
-      - DB_HOST=backend
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_NAME=demo
+      DB_HOST: backend
+      DB_USER: postgres
+      DB_PASSWORD: /run/secrets/pg_pass
+      DB_NAME: demo
+#    secrets:
+#      - pg_pass
+
+#secrets:
+#  pg_pass:
+#    external: true
+        
