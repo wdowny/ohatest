@@ -2,4 +2,4 @@
 
 docker build -t wdowny/ohatest .
 docker push wdowny/ohatest
-ansible-playbook -i hosts ansible-playbook.yaml
+ansible-playbook ansible-playbook.yaml
